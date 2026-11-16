@@ -1,0 +1,317 @@
+/* Hallmark · theme: custom · genre: atmospheric · posture: restrained · idea: a dithered landscape opens onto a public link index · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H5 E4 S4 R5 V4 · the Collection preview carries real links and gives the landing page an immediate use. */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
+  --container-site: 96rem;
+  --container-landing: 71rem;
+  --container-hero-copy: 48rem;
+  --container-hero-lead: 31rem;
+  --container-collection-sidebar: 15rem;
+  --spacing-site-header: 3.5rem;
+  --text-hero: clamp(2.75rem, 6vw, 4.5rem);
+  --text-hero--line-height: 1.04;
+  --text-hero--letter-spacing: -0.055em;
+  --text-section: clamp(1.875rem, 3.5vw, 2.625rem);
+  --text-section--line-height: 1.12;
+  --text-section--letter-spacing: -0.035em;
+  --text-nav: 0.8125rem;
+  --text-nav--line-height: 1.4;
+  --tracking-ui: -0.01em;
+  --font-weight-title: 450;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: color-mix(in oklch, var(--primary), var(--background) 16%);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: color-mix(in oklch, var(--secondary), var(--foreground) 8%);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-surface: color-mix(in oklch, var(--destructive), transparent 90%);
+  --color-destructive-surface-hover: color-mix(in oklch, var(--destructive), transparent 80%);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  color-scheme: light;
+  --font-heading: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --hero-dot-size: 2;
+  --hero-image-focus: 0.3;
+  --hero-dither-gamma: 1.25;
+  --hero-shadow-cutoff: 0.18;
+  --hero-sweep-period: 14000;
+  --hero-sweep-strength: 0.55;
+  --hero-frame-interval: 50;
+  --hero-height: clamp(34rem, 66svh, 45rem);
+  --hero-scroll-range: 42rem;
+  --hero-scroll-offset: 7rem;
+  --hero-opacity: 0.8;
+  --hero-reveal-ms: 320;
+  --hero-ink-low: oklch(0.42 0.076 240);
+  --hero-ink-high: oklch(0.74 0.075 227);
+  --hero-mask-color: oklch(0.15 0.01 248);
+  --hero-scrim: color-mix(in oklch, var(--background), transparent 55%);
+  --collection-cover-surface: oklch(0.23 0.022 247);
+  --collection-cover-design: oklch(0.25 0.047 242);
+  --collection-cover-agents: oklch(0.25 0.032 216);
+  --collection-cover-learning: oklch(0.25 0.024 183);
+  --collection-cover-foreground: oklch(0.93 0.017 239);
+  --collection-dot: oklch(0.63 0.072 231 / 0.65);
+  --collection-dot-radius: 0.038rem;
+  --collection-dot-spacing: 0.32rem;
+  --collection-item-columns: minmax(0, 1fr) auto;
+  --collection-row-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 0.75fr) auto;
+  --radius: 0.625rem;
+  --background: oklch(0.99 0.006 250);
+  --foreground: oklch(0.17 0.006 250);
+  --card: oklch(0.985 0.006 250);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.205 0.006 250);
+  --primary-foreground: oklch(0.985 0.006 250);
+  --secondary: oklch(0.96 0.006 250);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary);
+  --muted-foreground: oklch(0.45 0.006 250);
+  --accent: var(--secondary);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.55 0.21 26);
+  --border: oklch(0.89 0.006 250);
+  --input: oklch(0.65 0.006 250);
+  --ring: oklch(0.47 0.006 250);
+  --chart-1: oklch(0.59 0.2 40);
+  --chart-2: oklch(0.58 0.12 184);
+  --chart-3: oklch(0.42 0.08 227);
+  --chart-4: oklch(0.76 0.18 86);
+  --chart-5: oklch(0.68 0.17 66);
+  --sidebar: var(--card);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: oklch(0.18 0.006 250);
+  --foreground: oklch(0.96 0.006 250);
+  --card: oklch(0.22 0.006 250);
+  --primary: oklch(0.94 0.006 250);
+  --primary-foreground: oklch(0.2 0.006 250);
+  --secondary: oklch(0.27 0.006 250);
+  --muted-foreground: oklch(0.72 0.006 250);
+  --destructive: oklch(0.72 0.17 24);
+  --border: oklch(0.3 0.006 250);
+  --input: oklch(0.55 0.006 250);
+  --ring: oklch(0.76 0.006 250);
+  --chart-1: oklch(0.68 0.18 40);
+  --chart-2: oklch(0.71 0.14 184);
+  --chart-3: oklch(0.67 0.14 227);
+  --chart-4: oklch(0.81 0.17 86);
+  --chart-5: oklch(0.76 0.16 66);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  html {
+    scrollbar-color: var(--ring) var(--background);
+  }
+
+  ::selection {
+    color: var(--primary-foreground);
+    background: var(--primary);
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    font-synthesis: none;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    @apply min-w-0 font-display;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+}
+
+@layer components {
+  .collection-shell {
+    grid-template-columns: minmax(0, 1fr);
+
+    @variant lg {
+      grid-template-columns: var(--container-collection-sidebar) minmax(0, 1fr);
+      min-height: calc(100svh - var(--spacing-site-header));
+    }
+  }
+
+  .collection-header-brand {
+    @variant lg {
+      width: var(--container-collection-sidebar);
+    }
+  }
+
+  .collection-heading,
+  .collection-cover {
+    @apply relative;
+  }
+
+  .collection-cover {
+    color: var(--collection-cover-foreground);
+    background-color: var(--collection-cover-surface);
+  }
+
+  .collection-cover[data-category="design"] {
+    background-color: var(--collection-cover-design);
+  }
+
+  .collection-cover[data-category="agents"] {
+    background-color: var(--collection-cover-agents);
+  }
+
+  .collection-cover[data-category="learning"] {
+    background-color: var(--collection-cover-learning);
+  }
+
+  .collection-heading::before,
+  .collection-cover::before {
+    @apply pointer-events-none absolute inset-0;
+    content: "";
+    border-radius: inherit;
+    background-image: radial-gradient(circle, var(--collection-dot) var(--collection-dot-radius), transparent var(--collection-dot-radius));
+    background-size: var(--collection-dot-spacing) var(--collection-dot-spacing);
+    mask-image: linear-gradient(to bottom left, var(--collection-cover-foreground), transparent 66%);
+  }
+
+  .collection-heading::before {
+    mask-image: linear-gradient(to left, var(--collection-cover-foreground), transparent 42%);
+  }
+
+  .landing-hero {
+    min-height: var(--hero-height);
+  }
+
+  .hero-landscape {
+    @apply pointer-events-none absolute inset-0 overflow-clip;
+    mask-image: linear-gradient(var(--hero-mask-color) 50%, transparent 100%);
+  }
+
+  .hero-landscape-scene {
+    @apply absolute inset-0;
+    opacity: var(--hero-opacity);
+  }
+
+  .hero-landscape-canvas {
+    @apply absolute inset-0 size-full;
+    image-rendering: pixelated;
+    opacity: 0;
+  }
+
+  .hero-landscape[data-ready="true"] .hero-landscape-canvas {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-landscape-canvas {
+      transition: opacity calc(var(--hero-reveal-ms) * 1ms) ease-out;
+    }
+  }
+
+  .hero-landscape::after {
+    @apply absolute inset-0;
+    content: "";
+    background: radial-gradient(ellipse at center, var(--hero-scrim), transparent 68%);
+  }
+
+  .hero-motion-control {
+    @apply absolute right-4 top-4 z-10 bg-background/80 text-muted-foreground sm:right-6 sm:top-6;
+  }
+
+  .hero-motion-control:active {
+    @apply bg-secondary text-secondary-foreground;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-landscape-scene {
+        animation: hero-scroll linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0 var(--hero-scroll-range);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-motion-control {
+      display: none;
+    }
+  }
+}
+
+@utility grid-cols-collection-item {
+  grid-template-columns: var(--collection-item-columns);
+}
+
+@utility grid-cols-collection-row {
+  grid-template-columns: var(--collection-row-columns);
+}
+
+@keyframes hero-scroll {
+  to {
+    transform: translateY(var(--hero-scroll-offset));
+    opacity: 0;
+  }
+}
