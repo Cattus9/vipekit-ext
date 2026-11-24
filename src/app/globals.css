@@ -198,12 +198,6 @@
     }
   }
 
-  .collection-header-brand {
-    @variant lg {
-      width: var(--container-collection-sidebar);
-    }
-  }
-
   .collection-heading,
   .collection-cover {
     @apply relative;
