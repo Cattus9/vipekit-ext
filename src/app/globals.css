@@ -198,7 +198,6 @@
     }
   }
 
-  .collection-heading,
   .collection-cover {
     @apply relative;
   }
@@ -220,7 +219,6 @@
     background-color: var(--collection-cover-learning);
   }
 
-  .collection-heading::before,
   .collection-cover::before {
     @apply pointer-events-none absolute inset-0;
     content: "";
@@ -228,10 +226,6 @@
     background-image: radial-gradient(circle, var(--collection-dot) var(--collection-dot-radius), transparent var(--collection-dot-radius));
     background-size: var(--collection-dot-spacing) var(--collection-dot-spacing);
     mask-image: linear-gradient(to bottom left, var(--collection-cover-foreground), transparent 66%);
-  }
-
-  .collection-heading::before {
-    mask-image: linear-gradient(to left, var(--collection-cover-foreground), transparent 42%);
   }
 
   .landing-hero {

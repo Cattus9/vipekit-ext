@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  ArrowUpRight, BookOpen, LayoutGrid, Layers3, Library, List,
+  ArrowUpRight, BookOpen, Globe, LayoutGrid, Layers3, Library, List,
   PanelsTopLeft, Search, Sparkles, Star, Type,
 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
@@ -97,7 +97,7 @@ export function CollectionBrowser() {
       </aside>
 
       <section className="min-w-0 px-4 pb-16 lg:px-8" aria-labelledby="collection-title">
-        <header className="collection-heading grid gap-3 pt-8 pb-6 sm:pt-10 sm:pb-8">
+        <header className="grid gap-3 pt-8 pb-6 sm:pt-10 sm:pb-8">
           <h1 id="collection-title" className="text-section font-normal">{activeCategory.label}</h1>
           <p className="text-muted-foreground">Tools, inspirasi, dan bacaan untuk proyek berikutnya.</p>
         </header>
@@ -121,7 +121,7 @@ export function CollectionBrowser() {
         </p>
 
         {results.length ? (
-          <ul data-view={view} className={view === "grid" ? "grid gap-4 sm:grid-cols-2 xl:grid-cols-3 xl:gap-6" : "grid gap-2"}>
+          <ul data-view={view} className={view === "grid" ? "grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 xl:gap-6" : "grid gap-2"}>
             {results.map((link) => <CollectionItem key={link.href} link={link} view={view} />)}
           </ul>
         ) : (
@@ -146,18 +146,24 @@ function CollectionSearch({ label, value, onChange }: { label: string; value: st
 
 function CollectionItem({ link, view }: { link: CollectionLink; view: "grid" | "list" }) {
   const isGrid = view === "grid";
+  const [iconFailed, setIconFailed] = useState(false);
 
   return (
     <li className="min-w-0">
       <a href={link.href} className="group flex h-full flex-col rounded-lg border bg-card text-card-foreground hover:border-ring active:border-ring">
         {isGrid && (
-          <div aria-hidden="true" data-category={link.category} className="collection-cover isolate flex aspect-video items-end rounded-t-lg p-4 sm:p-5">
-            <span className="relative font-display text-section font-normal">{link.mark}</span>
-          </div>
+          <div aria-hidden="true" data-category={link.category} className="collection-cover isolate aspect-video rounded-t-lg" />
         )}
         <div className={cn("grid flex-1 grid-cols-collection-item items-start gap-x-4 gap-y-2 p-4", isGrid ? "sm:p-5" : "md:grid-cols-collection-row md:items-center")}>
           <div className="grid min-w-0 gap-1">
-            <h2 className="font-display text-lg font-medium tracking-tight">{link.name}</h2>
+            <h2 className="flex min-w-0 items-center gap-2 font-display text-base font-medium tracking-tight">
+              {iconFailed ? (
+                <Globe aria-hidden="true" className="size-4 shrink-0 text-muted-foreground" />
+              ) : (
+                <img src={`${new URL(link.href).origin}/favicon.ico`} alt="" className="size-4 shrink-0 object-contain" onError={() => setIconFailed(true)} />
+              )}
+              <span>{link.name}</span>
+            </h2>
             <p className="break-all text-xs text-muted-foreground">{domainOf(link.href)}</p>
           </div>
           <ArrowUpRight aria-hidden="true" className={cn("mt-1 size-4 text-muted-foreground group-hover:text-foreground", !isGrid && "md:order-last md:mt-0")} />
