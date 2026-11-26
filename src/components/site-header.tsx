@@ -18,7 +18,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b bg-background">
       <div className="flex min-h-site-header flex-wrap items-center gap-x-3 px-3 sm:gap-x-8 sm:px-6">
         <Link href="/" className="inline-flex shrink-0 items-center gap-2 rounded-sm font-display text-lg font-medium tracking-tight">
-          <Image src="/images/falcon.png" alt="" width={32} height={32} className="size-8 object-contain" />
+          <Image src="/images/falconIc.png" alt="" width={32} height={32} className="size-8 object-contain" />
           Vipekit
         </Link>
         <nav aria-label="Navigasi utama" className="flex min-w-0 items-center gap-1">
